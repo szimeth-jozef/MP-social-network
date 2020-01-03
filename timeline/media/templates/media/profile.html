@@ -1,0 +1,46 @@
+{% extends "media/base.html" %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'media/css/profile_style.css' %}">
+    <div class="content-container">
+        <div class="profile-details div-debug">
+            <div class="user-context clearfix">
+                <img src="{{ user.banner_picture.url }}" class="banner-img" alt="banner image">
+                <img src="{{ user.profile_picture.url }}" class="profile-img" alt="banner image">
+                {% if request.user.username == username %}
+                    <a href="{% url 'edit-profile' %}">
+                        <button id="editButton" class="profile-context-button">Edit profile</button>
+                    </a>
+                {% else %}
+                    <button id="followButton" class="profile-context-button" value="{{ username }}">
+                        {% if isFollowing %}
+                            Unfollow
+                        {% else %}
+                            Follow
+                        {%endif%}
+                    </button>
+                    <!-- <input type="hidden" name="token" id="token" value="{{ token }}"> -->
+                {% endif %}
+                <div class="visit-card">
+                    <h2>{{ user.full_name }}</h2>
+                    <p>@{{username}}</p>
+                </div>
+            </div>
+            {% if about %}
+                <p class="about">{{ about }}</p>
+            {% endif %}
+            <div class="status-info div-debug">
+                <a href="{% url 'follow-detail' username=username follow='following' %}" id="followingCount">{{ following }} Following</a>
+                <a href="{% url 'follow-detail' username=username follow='followers' %}" id="followerCount">{{ followers }} Followers</a>
+                <p>{{ post_count }} Posts</p>
+            </div>
+        </div>
+        <div class="posts-container">
+            <h2>Posts</h2>
+            {% for i, post in posts %}
+                {% include "media/post.html" %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock content %}

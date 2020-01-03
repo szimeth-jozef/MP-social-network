@@ -1,0 +1,49 @@
+{% load static %}
+{% load array_access %}
+<div class="post">
+    <input type="hidden" name="post-slug" id="post-slug" class="post-slug" value="{{ post.slug }}">
+    <div class="post-header">
+        <!-- Here is used raw url which is a bad practice, but for now I am now aware of better solution -->
+        <a href="http://localhost:8000/site/{{ post.author.username }}/">
+            <img src="{{post.author.profile_picture.url}}" alt="userProfile" class="profile-on-post">
+        </a>
+        <div class="post-user-info">
+            <a href="http://localhost:8000/site/{{ post.author.username }}/">
+                <h3 class="full-name">{{ post.author.full_name }}</h3>
+            </a>
+            <p>@{{post.author.username}}</p>
+            <p class="post-date">{{ post.date_posted|date:"j. M Y H:i" }}</p>
+        </div>
+        <div class="status-options-container">
+            <img src="{% static 'media/images/options.png' %}" class="options-button-img" alt="options">
+        </div>
+        {% if request.user.username == post.author.username %}
+            <div class="options-box">
+                <div class="option delete-post">Delete this post</div>
+            </div>
+        {% else %}
+            <div class="options-box">
+            </div>
+        {% endif %}
+    </div>
+    <div class="post-body">
+        <p>{{post.text}}</p>
+        {% if post.image %}
+            <img src="{{post.image.url}}" id="body-image" alt="postImage">
+        {% endif %}
+    </div>
+    <div class="post-footer">
+        <div id="like-button" class="like-button">
+            {% if request.user in post.likes.all %}
+                <img src="{% static 'media/images/fire-up-lit-logo.png' %}" class="clickablepart" alt="fire-up">
+            {% else %}
+            <img src="{% static 'media/images/fire-up-none-logo.png' %}" class="clickablepart" alt="fire-up">
+            {% endif %}
+            <p class="number-of-likes">{{ post.likes.all|length }}</p>
+        </div>
+        <div class="comment-button">
+            <img src="{% static 'media/images/comment-icon.png' %}" alt="comment-icon" class="comment-icon">
+            <p class="number-of-comments">{{ comments|indexOf:i }}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+{% extends "media/base.html" %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'media/css/home_style.css' %}">
+    <div class="content-container">
+        <div class="create-status-field">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="input-area">
+                    <img src="{{ request.user.profile_picture.url }}" alt="profile picture" class="status-pp">
+                    <textarea type="text" maxlength="250" rows="1" name="text" id="id_text" placeholder="What's hapenning?" required></textarea>
+                    <div id="id-upld-image-container" class="hidden_elm">
+                        <div id="id_x-button" class="hidden_elm"><img src="{% static 'media/images/white_cross.png' %}" alt="white cross"></div>
+                        <img src="#" alt="uploaded image" id="loaded_image" class="hidden_elm">
+                    </div>
+                </div>
+                <hr>
+                <div class="submit-area clearfix">
+                    <input type="file" class="randomclass" name="image" id="id_image" accept="image/*" >
+                    <label for="id_image" id="add-image"><img src="{% static 'media/images/image-icon.jpg' %}" alt="add image" width="22" height="22"></label>
+                    <button type="submit">Post</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="posts-container">
+            {% for i, post in posts %}
+                {% include "media/post.html" %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock content %} 

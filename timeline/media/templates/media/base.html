@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TimeLine</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'media/css/global_style.css' %}">
+    <link rel="stylesheet" href="{% static 'media/css/headbar_style.css' %}">
+    <link rel="stylesheet" href="{% static 'media/css/post_style.css' %}">
+</head>
+<body>
+    <div class="headbar">
+        <div class="branding">
+            <h1><a href="{% url 'home' %}">TimeLine</a></h1>
+        </div>
+        <div class="usertools">
+            <form method="GET">
+                <div class="searchbar">
+                    <input type="search" placeholder="Search" id="search-bar">
+                    <button type="submit"><img src="{% static 'media/images/search.png' %}" width="12px" height="12px"></button>
+                </div>
+            </form>
+            <div class="popup-results" id="popup-box"></div>
+            <div class="links">
+                <a href="{% url 'profile' request.user.username %}" id="profile-link">
+                    <img src="{{ request.user.profile_picture.url }}" id="home-profile-picture">
+                    <span style="white-space: nowrap;">{{ request.user.full_name }}</span>                    
+                </a>
+                <a href="{% url 'home' %}" class="adjust-link">Home</a>
+            </div>
+            <a href="{% url 'logout' %}" class="auth-link adjust-link">Logout</a>
+        </div>
+    </div>
+
+    <input type="hidden" name="token" id="token" value="{{ token }}">
+
+    {% block content %}{% endblock %}
+
+    <script type="module" src="{% static 'media/js/script.js' %}"></script> 
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
