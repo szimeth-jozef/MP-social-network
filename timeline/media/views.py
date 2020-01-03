@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound, HttpResponse, HttpResponseRedirect, Http404
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 from media.forms import CreateStatusPostForm
 
@@ -10,6 +11,23 @@ from comments.models import Comment
 from media.models import StatusPost
 from account.models import Account
 
+
+@login_required()
+def search_detail(request):
+    query = request.GET.get('q')
+    queryset = getUsers(query)
+    
+    context = {
+        'users': []
+    }
+
+    for user in queryset:
+        context['users'].append({
+            'username': user.username,
+            'fullName': user.full_name
+        })
+    
+    return render(request, 'media/search_detail.html', context)
 
 @login_required()
 def follow_detail(request, username, follow):
@@ -122,3 +140,17 @@ def validateUser(username):
         return userExists
     except ObjectDoesNotExist:
         return None
+
+
+def getUsers(keyword):
+    queryset = None
+    queries = keyword.split(" ")
+    for q in queries:
+        users = Account.objects.filter(
+            Q(username__icontains=q) |
+            Q(full_name__icontains=q)
+        ).distinct()
+
+        queryset = [user for user in users]
+
+    return list(set(queryset))

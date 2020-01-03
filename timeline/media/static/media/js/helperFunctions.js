@@ -27,3 +27,23 @@ export async function getSearchResults(keyword) {
 
     return await response.json();
 }
+
+export function addResultsToPopup(box, res) {
+    box.innerHTML = '';
+
+    for (const user of res.users) {
+        const name = document.createElement('p');
+        const nameHolder = document.createElement('div');
+        name.innerText = user.fullName;
+        nameHolder.setAttribute('class', 'popup-result');
+        nameHolder.appendChild(name);
+
+        nameHolder.addEventListener('click', function() {
+            window.location.href = 'http://localhost:8000/site/' + `${user.username}/`;
+        });
+
+        // nameHolder.classList.add('div-debug');
+
+        box.appendChild(nameHolder);
+    }
+}

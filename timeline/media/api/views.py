@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.db.models import Q
 
 from rest_framework import generics
 from rest_framework.decorators import api_view, permission_classes
@@ -72,9 +73,29 @@ def likePost(request):
 @api_view(["GET"])
 def searchUsers(request, keyword):
     response = {
-        "keyword": keyword
+        'users': []
     }
+    queryset = getUsers(keyword)
+
+    for user in queryset:
+        response['users'].append({
+            'username': user.username,
+            'fullName': user.full_name
+        })
 
     return Response(response, content_type='application/json')
 
-    
+
+def getUsers(keyword):
+    queryset = None
+    queries = keyword.split(" ")
+    for q in queries:
+        users = Account.objects.filter(
+            Q(username__icontains=q) |
+            Q(full_name__icontains=q)
+        ).distinct()
+
+        queryset = [user for user in users]
+
+    return list(set(queryset))
+

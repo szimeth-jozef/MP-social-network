@@ -16,9 +16,9 @@
             <h1><a href="{% url 'home' %}">TimeLine</a></h1>
         </div>
         <div class="usertools">
-            <form method="GET">
+            <form action="{% url 'search_detail' %}" method="GET">
                 <div class="searchbar">
-                    <input type="search" placeholder="Search" id="search-bar">
+                    <input name="q" type="search" placeholder="Search" id="search-bar" autocomplete="off">
                     <button type="submit"><img src="{% static 'media/images/search.png' %}" width="12px" height="12px"></button>
                 </div>
             </form>

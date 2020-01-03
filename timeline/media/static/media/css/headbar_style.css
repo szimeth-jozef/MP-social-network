@@ -95,10 +95,24 @@ button:focus {
     position: absolute;
     top: 57px;
     width: 375px;
-    height: 121px;
+    max-height: 280px;
     margin-left: 12px;
     background: white;
     display: none;
+}
+
+.popup-result {
+    margin-bottom: 3px;
+    padding: 5px;
+}
+
+.popup-result p {
+    margin: 0;
+}
+
+.popup-result:hover {
+    cursor: pointer;
+    background: rgb(182, 182, 182);
 }
 
 .show-popup {

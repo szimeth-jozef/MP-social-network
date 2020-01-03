@@ -5,7 +5,8 @@ from .views import (
     profile_view,
     post_view,
     edit_profile,
-    follow_detail
+    follow_detail,
+    search_detail
 )
 
 from .api.urls import urlpatterns as apiurls
@@ -15,9 +16,9 @@ from .api.urls import urlpatterns as apiurls
 urlpatterns = [
     path('home/', home_view, name='home'),
     path('edit/', edit_profile, name='edit-profile'),
+    path('search/', search_detail, name='search_detail'),
     path('<str:username>/', profile_view, name='profile'),
     path('<str:username>/<str:follow>', follow_detail, name='follow-detail'),
     path('api/', include(apiurls)),
     path('post/<slug:slug>/', post_view, name='post'),
-   
 ] 

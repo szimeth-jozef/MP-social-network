@@ -1,7 +1,7 @@
 console.log("global script")
 
 import EventSystem from './post.js';
-import { makeLike, getSearchResults } from './helperFunctions.js';
+import { makeLike, getSearchResults,addResultsToPopup } from './helperFunctions.js';
 
 // Loaded elements
 const textarea = document.getElementById('id_text');
@@ -62,7 +62,6 @@ const token = document.getElementById('token');
 // Event listeners
 if (followButton) {
     followButton.addEventListener('click', function() {
-        console.log("Fetched with:", token.value, "tok follow", followButton.value);
 
         const url = "http://localhost:8000/site/api/makefollow/";
 
@@ -130,8 +129,10 @@ searchInput.addEventListener('keyup', function() {
 
     if (keyword.trim().length !== 0) {
         popup.classList.add('show-popup');
-        getSearchResults(keyword).then(res => console.log(res));
+        getSearchResults(keyword)
+            .then(res => addResultsToPopup(popup, res));
     } else {
+        popup.innerHTML = '';
         popup.classList.remove('show-popup');
     }
 });
