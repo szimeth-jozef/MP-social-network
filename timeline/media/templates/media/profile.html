@@ -32,7 +32,7 @@
             <div class="status-info div-debug">
                 <a href="{% url 'follow-detail' username=username follow='following' %}" id="followingCount">{{ following }} Following</a>
                 <a href="{% url 'follow-detail' username=username follow='followers' %}" id="followerCount">{{ followers }} Followers</a>
-                <p>{{ post_count }} Posts</p>
+                <p><span id="post-count">{{ post_count }}</span> Posts</p>
             </div>
         </div>
         <div class="posts-container">

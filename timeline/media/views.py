@@ -4,7 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
-from media.forms import CreateStatusPostForm
+from media.forms import CreateStatusPostForm, EditProfileForm
 
 from rest_framework.authtoken.models import Token
 from comments.models import Comment
@@ -49,7 +49,16 @@ def follow_detail(request, username, follow):
 
 @login_required()
 def edit_profile(request):
-    context = {}
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/site/edit/')
+    else:
+        form = EditProfileForm(instance=request.user)
+        context = { "form": form }
+
     return render(request, 'media/edit.html', context)
 
 

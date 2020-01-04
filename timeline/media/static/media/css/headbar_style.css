@@ -19,12 +19,12 @@
     margin: 0 auto 0 10%;
 }
 
-.usertools a {
+.navbar-link {
     /* border: solid black 1px; */
     border-radius: 10px;
 }
 
-.usertools a:hover {
+.navbar-link:hover {
     background-color: rgb(211, 97, 52);
 }
 
@@ -74,10 +74,6 @@ button:focus {
     padding: 12px 5px;
 }
 
-.auth-link {
-    margin-left: 80px;
-}
-
 #home-profile-picture {
     width: 40px;
     height: 40px;
@@ -118,4 +114,10 @@ button:focus {
 .show-popup {
     display: block;
     z-index: 1;
+}
+
+.logout {
+    height: 18px;
+    margin: auto 0;
+    margin-right: 20px;
 }

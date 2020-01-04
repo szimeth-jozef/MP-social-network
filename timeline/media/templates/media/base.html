@@ -24,13 +24,15 @@
             </form>
             <div class="popup-results" id="popup-box"></div>
             <div class="links">
-                <a href="{% url 'profile' request.user.username %}" id="profile-link">
+                <a href="{% url 'profile' request.user.username %}" id="profile-link" class="navbar-link">
                     <img src="{{ request.user.profile_picture.url }}" id="home-profile-picture">
                     <span style="white-space: nowrap;">{{ request.user.full_name }}</span>                    
                 </a>
-                <a href="{% url 'home' %}" class="adjust-link">Home</a>
+                <a href="{% url 'home' %}" class="adjust-link navbar-link">Home</a>
             </div>
-            <a href="{% url 'logout' %}" class="auth-link adjust-link">Logout</a>
+        </div>
+        <div class="logout">
+            <a href="{% url 'logout' %}" class="adjust-link navbar-link">Logout</a>
         </div>
     </div>
 

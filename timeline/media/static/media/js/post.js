@@ -78,15 +78,25 @@ class Post {
     pressedDelete(t) {
         if (t === this.deleteOption) {
             const slug = this.parent.querySelector('#post-slug').value;
+            const conf = confirm("Are you sure you want to delete this post?");
 
-            console.log('Clicked on post', slug);
-            deletePost(slug).then(res => {
-                if (res.success) {
-                    this.parent.parentNode.removeChild(this.parent);
-                } else {
-                    console.error("Couldn't delete this post!");
-                }
-            });
+            if (conf) {
+                deletePost(slug).then(res => {
+                    if (res.success) {
+                        // Remove the deleted post from the page
+                        this.parent.parentNode.removeChild(this.parent);
+                        // Get the post count number, if exists the decrement it
+                        const postsCount = document.getElementById('post-count');
+                        if (postsCount) {
+                            let number = Number(postsCount.innerText);
+                            number--;
+                            postsCount.innerText = String(number);
+                        }
+                    } else {
+                        console.error("Couldn't delete this post!");
+                    }
+                });
+            }
         }
     }
 
