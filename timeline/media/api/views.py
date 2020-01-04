@@ -2,14 +2,15 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db.models import Q
 
+from rest_framework import status
 from rest_framework import generics
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view, permission_classes
 
 from rest_framework.authtoken.models import Token
-from account.models import Account
 from media.models import StatusPost
+from account.models import Account
 import json
 
 
@@ -84,6 +85,23 @@ def searchUsers(request, keyword):
         })
 
     return Response(response, content_type='application/json')
+
+
+@api_view(["DELETE"])
+def deletePost(request, slug):
+    try:
+        post = StatusPost.objects.get(slug=slug)
+    except StatusPost.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    operation = post.delete()
+    response = {}
+    if operation:
+        response["success"] = True
+    else:
+        response["success"] = False
+    
+    return Response(response, status=status.HTTP_200_OK)
 
 
 def getUsers(keyword):

@@ -1,3 +1,5 @@
+import { deletePost } from './helperFunctions.js';
+
 export default class EventSystem {
     constructor(trackable) {
         this.trackable = this.createTrack(trackable);
@@ -32,6 +34,7 @@ class Post {
         
         this.optionsBox = post.querySelector('.options-box');
         this.options = this.optionsBox.children;
+        this.deleteOption = post.querySelector('.delete-post');
         // Later when I will need to click on post image this will come handy
         this.postImage = post.querySelector('#body-image');
         
@@ -39,7 +42,8 @@ class Post {
         
         this.events = [
             this.pressedOptions,
-            this.pressedPost
+            this.pressedPost,
+            this.pressedDelete
         ];
     }
 
@@ -69,6 +73,21 @@ class Post {
             }
         }
 
+    }
+
+    pressedDelete(t) {
+        if (t === this.deleteOption) {
+            const slug = this.parent.querySelector('#post-slug').value;
+
+            console.log('Clicked on post', slug);
+            deletePost(slug).then(res => {
+                if (res.success) {
+                    this.parent.parentNode.removeChild(this.parent);
+                } else {
+                    console.error("Couldn't delete this post!");
+                }
+            });
+        }
     }
 
     match(target) {

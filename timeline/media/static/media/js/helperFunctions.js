@@ -28,6 +28,14 @@ export async function getSearchResults(keyword) {
     return await response.json();
 }
 
+export async function deletePost(slug) {
+    const url = baseURL + `delete/${slug}/`;
+
+    const response = await fetch(url, { method:'DELETE' });
+    
+    return await response.json();
+}
+
 export function addResultsToPopup(box, res) {
     box.innerHTML = '';
 
