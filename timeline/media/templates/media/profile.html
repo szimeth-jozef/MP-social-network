@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{% static 'media/css/profile_style.css' %}">
     <div class="content-container">
         <div class="profile-details div-debug">
-            <div class="user-context clearfix">
+            <div class="user-context">
                 <img src="{{ user.banner_picture.url }}" class="banner-img" alt="banner image">
                 <img src="{{ user.profile_picture.url }}" class="profile-img" alt="banner image">
                 {% if request.user.username == username %}

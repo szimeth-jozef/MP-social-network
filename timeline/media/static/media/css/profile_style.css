@@ -8,12 +8,13 @@
 
 .user-context {
     /* background-color: white; */
+    overflow: hidden;
 }
 
 .visit-card {
-    position: sticky;
-    float: right;
-    right: 330px;
+    position: relative;
+    left: 300px;
+    max-width: 330px;
 }
 
 .visit-card h2 {
