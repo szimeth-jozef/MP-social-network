@@ -1,16 +1,47 @@
 {% extends "media/base.html" %}
 {% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'media/css/edit_profile_style.css' %}">
     <div class="content-container div-debug">
-        <h2>Edit profile</h2>
+        <div class="edit-field div-debug">
+            <h2>Edit profile</h2>
+
+            <form method="POST" enctype='multipart/form-data'>
+                {% csrf_token%}
+
+                <img src="{{ request.user.banner_picture.url }}" id="banner" alt="banner image">
+                <input type="file" name="banner_picture" accept="image/*" id="id_banner_picture" class="hide-upload">
+                <label for="id_banner_picture" id="change-banner"><img src="{% static 'media/images/change-picture.png' %}" alt="change picture" width="22" height="22"></label>
+
+                <img src="{{ request.user.profile_picture.url }}" id="profile" alt="profile image">
+                <input type="file" name="profile_picture" accept="image/*" id="id_profile_picture" class="hide-upload">
+                <label for="id_profile_picture" id="change-profile"><img src="{% static 'media/images/change-picture.png' %}" alt="change picture" width="22" height="22"></label>
+
+                <label for="id_full_name">Name:</label>
+                <input type="text" name="full_name" id="id_full_name" value="{{ form.full_name.value }}" maxlength="60" required>
+
+                <label for="id_about">About yourself:</label>
+                <textarea name="about" cols="40" rows="10" id="id_about">{{ form.about.value}}</textarea>
+
+                <label for="id_residency">Residency:</label>
+                <input type="text" name="residency" value="{{ form.residency.value }}" maxlength="85" id="id_residency">
+
+                <label for="id_date_of_birth">Birth date:</label>
+                <input type="text" name="date_of_birth" value='{{ form.date_of_birth.value|date:"Y-m-d" }}' id="id_date_of_birth">
+
+                <input type="submit" value="Save">
+            </form>
+        </div>
+       
         
-        <form method='POST'>
+        <!-- <form method='POST' enctype='multipart/form-data'>
             {% csrf_token %}
             {% for field in form %}
                 {{field.label_tag}}
                 {{field}}
                 <br>
             {% endfor %}
-            <button type="submit">Save</button>
-        </form>
+            <input type="submit" value="Save">
+        </form> -->
     </div>
 {% endblock content %} 

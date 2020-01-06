@@ -6,3 +6,5 @@ class StatusPostAdmin(admin.ModelAdmin):
     readonly_fields = ('date_posted',)
 
 admin.site.register(StatusPost, StatusPostAdmin)
+
+admin.site.site_header = 'TimeLine Administration'

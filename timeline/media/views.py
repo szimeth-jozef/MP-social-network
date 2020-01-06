@@ -50,7 +50,7 @@ def follow_detail(request, username, follow):
 @login_required()
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user)
+        form = EditProfileForm(request.POST or None, request.FILES or None, instance=request.user)
         
         if form.is_valid():
             form.save()

@@ -22,7 +22,7 @@ class EditProfileForm(forms.ModelForm):
             'banner_picture', 
             'residency',
             'about'
-        ]
+        ]  
 
 
 class AccountUpdateForm(forms.ModelForm):
