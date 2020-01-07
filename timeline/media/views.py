@@ -15,18 +15,20 @@ from account.models import Account
 @login_required()
 def search_detail(request):
     query = request.GET.get('q')
-    queryset = getUsers(query)
     
     context = {
         'users': []
     }
 
-    for user in queryset:
-        context['users'].append({
-            'username': user.username,
-            'fullName': user.full_name
-        })
+    if len(query) != 0:
+        queryset = getUsers(query)
     
+        for user in queryset:
+            context['users'].append({
+                'username': user.username,
+                'fullName': user.full_name
+            })
+        
     return render(request, 'media/search_detail.html', context)
 
 @login_required()

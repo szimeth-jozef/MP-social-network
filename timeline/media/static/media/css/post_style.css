@@ -29,6 +29,7 @@
     bottom: 50px;
     left: 100px;
     width: 80%;
+    margin-bottom: -12px;
 }
 
 .post-body img {
@@ -104,6 +105,8 @@
     display: flex;
     position: relative;
     bottom: 22px;
+    margin-bottom: -18px;
+    margin-left: 60px;
 }
 
 .post-footer p {
@@ -135,6 +138,7 @@
     align-items: center;
     width: 120px;
     height: 28px;
+    margin-left: 25px;
 }
 
 .comment-button img {

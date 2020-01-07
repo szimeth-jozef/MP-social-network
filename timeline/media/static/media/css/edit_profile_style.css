@@ -1,8 +1,24 @@
 .edit-field {
     width: 800px;
-    /* height: 500px; */
     margin: 10px auto;
     background-color: white;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid gray 2px;
+    margin-bottom: 1px;
+}
+
+.top-bar h2 {
+    margin-left: 40px;
+}
+
+.top-bar input {
+    height: 25px;
+    margin-right: 40px;
 }
 
 #banner {
@@ -13,20 +29,62 @@
 #profile {
     width: 200px;
     height: 200px;
+    border: solid white 4px;
+    border-radius: 100px;
 }
 
-/* #id_banner_picture {
-    display: none;
-} */
+.banner-container {
+    position: relative;
+}
+
+.profile-container {
+    position: relative;
+    bottom: 110px;
+    left: 50px;
+    display: inline-flex;
+}
 
 .hide-upload {
     display: none;
 }
 
-#change-banner:hover {
-    cursor: pointer;
+.change-image-button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    padding: 7px;
 }
 
-#change-profile:hover {
+.change-image-button:hover {
     cursor: pointer;
+    background: rgba(119, 136, 153, 0.72);
+    border-radius: 20px;
+}
+
+.change-image-button img {
+    width: 100%;
+    height: 100%;
+}
+
+.input-container {
+    background: rgba(236, 236, 236, 0.829);
+    margin-bottom: 20px;
+    border-bottom: solid black 2px;
+}
+
+.input-container label {
+    display: block;
+}
+
+.input-container input {
+    
+}
+
+.input-boxes {
+    position: relative;
+    bottom: 100px;
+    margin-bottom: -100px;
 }
