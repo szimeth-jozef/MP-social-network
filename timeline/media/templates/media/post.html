@@ -3,12 +3,11 @@
 <div class="post">
     <input type="hidden" name="post-slug" id="post-slug" class="post-slug" value="{{ post.slug }}">
     <div class="post-header">
-        <!-- Here is used raw url which is a bad practice, but for now I am now aware of better solution -->
-        <a href="http://localhost:8000/site/{{ post.author.username }}/">
+        <a href="{% url 'profile' post.author.username %}">
             <img src="{{post.author.profile_picture.url}}" alt="userProfile" class="profile-on-post">
         </a>
         <div class="post-user-info">
-            <a href="http://localhost:8000/site/{{ post.author.username }}/">
+            <a href="{% url 'profile' post.author.username %}">
                 <h3 class="full-name">{{ post.author.full_name }}</h3>
             </a>
             <p>@{{post.author.username}}</p>

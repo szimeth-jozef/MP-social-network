@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.conf import settings
-from django.db.models. signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 
 from rest_framework.authtoken.models import Token
+
+import os
 
 
 def upload_profile_location(instance, filename):
@@ -96,3 +98,31 @@ class Account(AbstractBaseUser):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+
+@receiver(pre_save, sender=Account)
+def auto_delete_file_on_change(sender, instance, **kwargs):
+    """
+    Deletes old file from filesystem
+    when corresponding `MediaFile` object is updated
+    with new file.
+    """
+    if not instance.pk:
+        return False
+
+    try:
+        old_profile = sender.objects.get(pk=instance.pk).profile_picture
+        old_banner = sender.objects.get(pk=instance.pk).banner_picture
+    except sender.DoesNotExist:
+        return False
+
+    new_profile = instance.profile_picture
+    new_banner = instance.banner_picture
+
+    if not old_profile == new_profile:
+        if os.path.isfile(old_profile.path):
+            os.remove(old_profile.path)
+
+    if not old_banner == new_banner:
+        if os.path.isfile(old_banner.path):
+            os.remove(old_banner.path)

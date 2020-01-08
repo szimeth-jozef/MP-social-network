@@ -1,7 +1,7 @@
 console.log("global script")
 
 import EventSystem from './post.js';
-import { makeLike, getSearchResults,addResultsToPopup } from './helperFunctions.js';
+import { makeLike, getSearchResults, addResultsToPopup } from './helperFunctions.js';
 
 // Loaded elements
 const textarea = document.getElementById('id_text');
@@ -136,3 +136,31 @@ searchInput.addEventListener('keyup', function() {
         popup.classList.remove('show-popup');
     }
 });
+
+
+// Edit profile change images preview
+const banner_input = document.getElementById('id_banner_picture');
+const profile_input = document.getElementById('id_profile_picture');
+
+if (banner_input && profile_input) {
+    const banner_image = document.getElementById('banner');
+    const profile_image = document.getElementById('profile');
+
+    banner_input.addEventListener('change', function() {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            banner_image.setAttribute('src', e.target.result);
+        };
+        reader.readAsDataURL(banner_input.files[0]);
+        
+    });
+
+    profile_input.addEventListener('change', function() {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            profile_image.setAttribute('src', e.target.result);
+        };
+        reader.readAsDataURL(profile_input.files[0]);
+        
+    });
+}
