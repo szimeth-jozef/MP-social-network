@@ -43,7 +43,8 @@ class Post {
         this.events = [
             this.pressedOptions,
             this.pressedPost,
-            this.pressedDelete
+            this.pressedDelete,
+            this.pressedPostImage
         ];
     }
 
@@ -97,6 +98,19 @@ class Post {
                     }
                 });
             }
+        }
+    }
+
+    pressedPostImage(t) {
+        if (t === this.postImage) {
+            const container = document.querySelector('.post-image-viewer');
+            container.style.display = 'block';
+            document.body.classList.add('stop-scroll-body');
+
+            container.querySelector('#image-view-close-button').addEventListener('click', function() {
+                container.style.display = 'none';
+                document.body.classList.remove('stop-scroll-body');
+            });
         }
     }
 
