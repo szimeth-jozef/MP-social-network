@@ -78,3 +78,10 @@ textarea:focus {
 .post-image-viewer h2:hover {
     cursor: pointer;
 }
+
+.post-image-viewer img {
+    width: 75%;
+    display: block;
+    margin: auto;
+    margin-top: 45px;
+}

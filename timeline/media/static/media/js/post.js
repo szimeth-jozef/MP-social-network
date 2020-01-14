@@ -104,6 +104,9 @@ class Post {
     pressedPostImage(t) {
         if (t === this.postImage) {
             const container = document.querySelector('.post-image-viewer');
+            const imageURL = this.postImage.src;
+            
+            container.querySelector('#full-image').src = imageURL;
             container.style.display = 'block';
             document.body.classList.add('stop-scroll-body');
 
