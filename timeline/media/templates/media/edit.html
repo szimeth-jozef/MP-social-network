@@ -28,7 +28,7 @@
                 <div class="input-boxes">
                     <div class="input-container">
                         <label for="id_full_name">Name</label>
-                        <input type="text" name="full_name" id="id_full_name" value="{{ form.full_name.value }}" maxlength="60" required>
+                        <input type="text" autocomplete="off" name="full_name" id="id_full_name" value="{{ form.full_name.value }}" maxlength="60" required>
                     </div>
     
                     <div class="input-container">
@@ -38,7 +38,7 @@
     
                     <div class="input-container">
                         <label for="id_residency">Location</label>
-                        <input type="text" name="residency" value="{{ form.residency.value }}" maxlength="85" id="id_residency">
+                        <input type="text" autocomplete="off" name="residency" value="{{ form.residency.value }}" maxlength="85" id="id_residency">
                     </div>
     
                     <label for="id_date_of_birth">Birth date</label>

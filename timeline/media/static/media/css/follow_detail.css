@@ -1,0 +1,51 @@
+.top-bar {
+    display: table;
+    margin: 0 auto;
+}
+
+.top-bar:first-child {
+    border-left: solid rgb(170, 170, 170) 2px;
+}   
+
+#following {
+    border-right: solid rgb(170, 170, 170) 2px;
+}
+
+.top-bar div {
+    display: inline-block;
+    text-align: center;
+    padding: 25px 0;
+    border-bottom: solid rgb(170, 170, 170) 1px;
+    border-top: solid rgb(170, 170, 170) 2px;
+
+}
+
+.top-bar div a {
+    color: rgb(170, 170, 170);
+    padding: 20px 100px;
+    font-weight: bold;
+
+}
+
+.top-bar div:hover {
+    cursor: pointer;
+    background-color: rgba(255, 136, 0, 0.699);
+}
+
+.active {
+    border-bottom: solid rgb(255, 94, 0) 3px !important;
+}
+
+.active a {
+    color: rgb(255, 94, 0) !important;
+}
+
+.users-container {
+    width: 548px;
+    margin: 0 auto;
+    margin-top: 0;
+    border-bottom: solid rgb(170, 170, 170) 2px;
+    border-left: solid rgb(170, 170, 170) 2px;
+    border-right: solid rgb(170, 170, 170) 2px;
+    border-top: solid rgb(170, 170, 170) 1px;
+}

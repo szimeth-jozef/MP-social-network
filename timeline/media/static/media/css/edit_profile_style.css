@@ -9,7 +9,6 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: solid gray 2px;
-    margin-bottom: 1px;
 }
 
 .top-bar h2 {
@@ -70,21 +69,48 @@
 }
 
 .input-container {
-    background: rgba(236, 236, 236, 0.829);
+    background: rgb(236, 236, 236);
     margin-bottom: 20px;
-    border-bottom: solid black 2px;
+    border-bottom: solid lightgray 2px;
+    padding: 5px 15px;
+    border-radius: 10px;
 }
 
 .input-container label {
     display: block;
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: gray;
 }
 
 .input-container input {
-    
+    width: 100%;
+    border: none;
+    background: rgb(236, 236, 236);
+    font-size: 22px;
+}
+
+input:focus {
+    outline: none;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.input-container textarea {
+    resize: none;
+    border: none;
+    width: 99%;
+    height: 100px;
+    background: rgb(236, 236, 236);
+    font-size: 22px;
 }
 
 .input-boxes {
     position: relative;
     bottom: 100px;
     margin-bottom: -100px;
+    width: 75%;
+    margin: 0 auto;
 }

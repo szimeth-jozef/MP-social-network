@@ -37,7 +37,9 @@ def follow_detail(request, username, follow):
     if not urlUser:
         return HttpResponseNotFound("We're sorry, this user does not exist.")
 
-    context = {}
+    context = {
+        "username": username
+    }
 
     if follow == "following":
         context['state'] = "following"

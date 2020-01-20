@@ -1,8 +1,29 @@
 {% extends "media/base.html" %}
 {% block content %}
-    {% if state == 'following' %}
-        <h1>Your or somebody elses followed ones</h1>
-    {% else %}
-        <h1>Your or somebody else followers</h1>
-    {% endif %}
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'media/css/follow_detail.css' %}">
+
+    <div class="content-container">
+        {% if state == 'following' %}
+            <div class="top-bar">
+                <div class="bar-button"><a href="{% url 'follow-detail' username=username follow='followers' %}">Followers</a></div> 
+                <div class="bar-button active" id="following"><a href="{% url 'follow-detail' username=username follow='following' %}">Following</a></div>
+            </div>
+            <div class="users-container div-debug">
+                {% for i in '0123456789'|make_list %}
+                    <p>Kaka</p>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="top-bar">
+                <div class="bar-button active"><a href="{% url 'follow-detail' username=username follow='followers' %}">Followers</a></div> 
+                <div class="bar-button" id="following"><a href="{% url 'follow-detail' username=username follow='following' %}">Following</a></div>
+            </div>
+            <div class="users-container">
+                {% for i in '0123456789'|make_list %}
+                    <p>Kaki</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
 {% endblock content %} 
