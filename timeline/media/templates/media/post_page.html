@@ -1,4 +1,27 @@
 {% extends "media/base.html" %}
 {% block content %}
-    <h1>This the sites slug {{ slug }}</h1>
+    <style>
+        .post {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .options-box {
+            position: absolute;
+            top: 10px;
+            left: unset;
+            right: 15px;
+        }
+    </style>
+    <div class="content-container div-debug">
+        {% include "media/post.html" %}
+
+        <div class="comments">
+            {% for comment in commentContent %}
+                <p>{{ comment.text }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+
 {% endblock content %}

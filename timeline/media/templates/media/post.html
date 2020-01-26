@@ -42,7 +42,11 @@
         </div>
         <div class="comment-button">
             <img src="{% static 'media/images/comment-icon.png' %}" alt="comment-icon" class="comment-icon">
-            <p class="number-of-comments">{{ comments|indexOf:i }}</p>
+            {% if not i == None %}
+                <p class="number-of-comments">{{ comments|indexOf:i }}</p>
+            {% else %}
+                <p class="number-of-comments">{{ comments }}</p>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -119,6 +119,19 @@ for (const post of postsOnPage) {
     });
 }
 
+// Event listener for comment buttons
+for (const post of postsOnPage) {
+    const commentButton = post.getElementsByClassName('comment-icon')[0];
+    const slug = post.getElementsByClassName('post-slug')[0].value;
+
+    commentButton.addEventListener('click', function() {
+        const container = document.querySelector('.add-comment-background');
+
+        container.style.display = 'block';
+        document.body.classList.add('stop-scroll-body');
+    });
+}
+
 
 // Search popup box event handler
 const searchInput = document.getElementById('search-bar');

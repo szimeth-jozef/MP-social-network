@@ -49,3 +49,20 @@
     border-right: solid rgb(170, 170, 170) 2px;
     border-top: solid rgb(170, 170, 170) 1px;
 }
+
+.user-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-field img {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+}

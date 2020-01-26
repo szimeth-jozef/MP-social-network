@@ -10,8 +10,22 @@
                 <div class="bar-button active" id="following"><a href="{% url 'follow-detail' username=username follow='following' %}">Following</a></div>
             </div>
             <div class="users-container div-debug">
-                {% for i in '0123456789'|make_list %}
-                    <p>Kaka</p>
+                {% for user in users %}
+                    <div class="user-field">
+                        <div class="user-info">
+                            <img src="{{ user.profile_picture.url }}" alt="user-profile-picture">
+                            <p>{{ user.full_name }}</p>
+                        </div>
+                        <div class="follow-button">
+                            <button id="followButton" class="profile-context-button" value="{{ user.username }}">
+                                {% if isFollowing %}
+                                    Unfollow
+                                {% else %}
+                                    Follow
+                                {%endif%}
+                            </button>
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
         {% else %}
@@ -20,8 +34,22 @@
                 <div class="bar-button" id="following"><a href="{% url 'follow-detail' username=username follow='following' %}">Following</a></div>
             </div>
             <div class="users-container">
-                {% for i in '0123456789'|make_list %}
-                    <p>Kaki</p>
+                {% for user in users %}
+                    <div class="user-field">
+                        <div class="user-info">
+                            <img src="{{ user.profile_picture.url }}" alt="user-profile-picture">
+                            <p>{{ user.full_name }}</p>
+                        </div>
+                        <div class="follow-button">
+                            <button id="followButton" class="profile-context-button" value="{{ username }}">
+                                {% if isFollowing %}
+                                    Unfollow
+                                {% else %}
+                                    Follow
+                                {%endif%}
+                            </button>
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
         {% endif %}

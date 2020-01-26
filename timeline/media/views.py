@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound, HttpResponse, HttpResponseRedirect, Http404
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+from django.db.models.query import QuerySet
 from django.db.models import Q
 
 from media.forms import CreateStatusPostForm, EditProfileForm
@@ -41,11 +42,15 @@ def follow_detail(request, username, follow):
         "username": username
     }
 
+    user = validateUser(username)
+
     if follow == "following":
         context['state'] = "following"
+        context['users'] = user.following.all()
         return render(request, 'media/follow_detail.html', context)
     elif follow == "followers":
         context['state'] = "followers"
+        context['users'] = user.followers.all()
         return render(request, 'media/follow_detail.html', context)
     else:
         return Http404
@@ -122,10 +127,19 @@ def profile_view(request, username):
 
 @login_required()
 def post_view(request, slug):
-    print(slug)
     context = {
-        "slug": slug
+        "slug": slug,
+        "token": Token.objects.get(user=request.user)
     }
+
+    try:
+        post = StatusPost.objects.get(slug=slug)
+        context["post"] = post 
+        context["comments"] = commentCount(post)
+        context["commentContent"] = getComments(post)
+    except StatusPost.DoesNotExist:
+        return HttpResponseNotFound("Something went wrong, post cannot be opened.")
+
     return render(request, 'media/post_page.html', context)
 
 
@@ -140,11 +154,16 @@ def getPostsFor(user):
 
 
 def commentCount(posts):
-    list_of_values = []
-    for post in posts:
-        comments = Comment.objects.filter(post=post)
-        list_of_values.append(len(comments))
-    return list_of_values
+    if isinstance(posts, QuerySet):
+        list_of_values = []
+        for post in posts:
+            comments = Comment.objects.filter(post=post)
+            list_of_values.append(len(comments))
+        return list_of_values
+
+    comments = Comment.objects.filter(post=posts)
+    return len(comments)
+
 
 
 def validateUser(username):
@@ -167,3 +186,9 @@ def getUsers(keyword):
         queryset = [user for user in users]
 
     return list(set(queryset))
+
+
+def getComments(post):
+    comments = Comment.objects.filter(post=post)
+    print(comments)
+    return comments

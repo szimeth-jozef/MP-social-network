@@ -3,7 +3,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'media/css/profile_style.css' %}">
     <div class="content-container">
-        <div class="profile-details div-debug">
+        <div class="profile-details">
             <div class="user-context">
                 <img src="{{ user.banner_picture.url }}" class="banner-img" alt="banner image">
                 <img src="{{ user.profile_picture.url }}" class="profile-img" alt="banner image">
@@ -29,7 +29,10 @@
             {% if about %}
                 <p class="about">{{ about }}</p>
             {% endif %}
-            <div class="status-info div-debug">
+
+            <p class="date-joined">Joined {{user.date_joined|date:"F y"}}</p>
+
+            <div class="status-info">
                 <a href="{% url 'follow-detail' username=username follow='following' %}" id="followingCount">{{ following }} Following</a>
                 <a href="{% url 'follow-detail' username=username follow='followers' %}" id="followerCount">{{ followers }} Followers</a>
                 <p><span id="post-count">{{ post_count }}</span> Posts</p>

@@ -4,10 +4,13 @@
     /* height: 500px; */
     margin: 10px auto;
     background-color: white;
+    border: solid gray 1px;
+    border-radius: 4px;
 }
 
 .user-context {
     /* background-color: white; */
+    margin-bottom: 30px;
     overflow: hidden;
 }
 
@@ -55,9 +58,9 @@ megproballom egy float propertyvel orvosolni */
 }
 
 .about {
-    margin-top: 30px;
     margin-left: 10px;
     margin-bottom: 20px;
+    font-size: 20px;
 }
 
 .profile-context-button {
@@ -74,8 +77,10 @@ megproballom egy float propertyvel orvosolni */
 
 .status-info {
     display: flex;
-    width: 60%;
-    justify-content: space-around;
+    width: 40%;
+    justify-content: space-between;
+    padding: 4px;
+    margin-left: 10px;
 }
 
 .status-info a {
@@ -90,4 +95,9 @@ megproballom egy float propertyvel orvosolni */
     text-decoration: underline;
 }
 
-
+.date-joined {
+    margin: 0;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: rgb(97, 97, 97);
+}
