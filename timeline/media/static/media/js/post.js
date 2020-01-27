@@ -39,12 +39,15 @@ class Post {
         this.postImage = post.querySelector('#body-image');
         
         this.post = this.postClickable(post.querySelectorAll('*'));
+
+        this.commentBG = document.querySelector('.add-comment-background');
         
         this.events = [
             this.pressedOptions,
             this.pressedPost,
             this.pressedDelete,
-            this.pressedPostImage
+            this.pressedPostImage,
+            this.closeAddComment
         ];
     }
 
@@ -114,6 +117,13 @@ class Post {
                 container.style.display = 'none';
                 document.body.classList.remove('stop-scroll-body');
             });
+        }
+    }
+
+    closeAddComment(t) {
+        if (t === this.commentBG) {
+            this.commentBG.style.display = 'none';
+            document.body.classList.remove('stop-scroll-body');
         }
     }
 

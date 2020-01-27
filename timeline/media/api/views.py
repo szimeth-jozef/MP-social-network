@@ -11,6 +11,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.authtoken.models import Token
 from media.models import StatusPost
 from account.models import Account
+from comments.models import Comment
 import json
 
 
@@ -103,6 +104,20 @@ def deletePost(request, slug):
     
     return Response(response, status=status.HTTP_200_OK)
 
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def addComment(request):
+    body = json.loads(request.body)
+    commentWriter = request.user.username
+    commentText = body['text']
+    slug = body['slug']
+
+    user = Account.objects.get(username=commentWriter)
+    post = StatusPost.objects.get(slug=slug)
+
+    comment = Comment.objects.create(user=user, post=post, text=commentText)
+    return Response(status=status.HTTP_200_OK)
 
 def getUsers(keyword):
     queryset = None

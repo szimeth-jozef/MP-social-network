@@ -1,7 +1,7 @@
 console.log("global script")
 
 import EventSystem from './post.js';
-import { makeLike, getSearchResults, addResultsToPopup } from './helperFunctions.js';
+import { makeLike, getSearchResults, addResultsToPopup, createComment } from './helperFunctions.js';
 
 // Loaded elements
 const textarea = document.getElementById('id_text');
@@ -129,6 +129,28 @@ for (const post of postsOnPage) {
 
         container.style.display = 'block';
         document.body.classList.add('stop-scroll-body');
+
+        container.querySelector('#comment-close-button').addEventListener('click', function(){
+            container.style.display = 'none';
+            document.body.classList.remove('stop-scroll-body');
+        });
+
+        container.querySelector('#send-comment').addEventListener('click', function() {
+            const textarea = container.querySelector('#add-comment-text');
+            const commentText = textarea.value;
+            if (commentText.trim().length !== 0) {
+                createComment(commentText, slug, token).then(res => console.log(res));
+                
+                textarea.value = "";
+                container.style.display = 'none';
+                document.body.classList.remove('stop-scroll-body');
+                const commentCount = document.querySelector('.number-of-comments');
+                console.log(commentCount);
+                const commentCountValue = Number(commentCount.innerText) + 1;
+                console.log(commentCountValue);
+                commentCount.innerText = String(commentCountValue);
+            }
+        });
     });
 }
 

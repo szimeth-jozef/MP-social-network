@@ -55,3 +55,22 @@ export function addResultsToPopup(box, res) {
         box.appendChild(nameHolder);
     }
 }
+
+export async function createComment(text, slug, token) {
+    const commentURL = baseURL + 'createComment/';
+
+    const data = {
+        text: text,
+        slug: slug
+    };
+
+    const response = await fetch(commentURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${token.value}`
+        },
+        body: JSON.stringify(data)
+    });
+    return response;
+}
