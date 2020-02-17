@@ -120,36 +120,54 @@ for (const post of postsOnPage) {
 }
 
 // Event listener for comment buttons
+let GLOBAL_CLICKED_POST;
+
+const sendCommentButton = document.querySelector('#send-comment');
+
+if (sendCommentButton) {
+    sendCommentButton.onclick = function() {
+        const textarea = this.parentNode.querySelector('#add-comment-text');
+        const commentText = textarea.value;
+        if (commentText.trim().length !== 0) {
+            const slug = GLOBAL_CLICKED_POST.querySelector('#post-slug').value; 
+        
+            createComment(commentText, slug, token).then(res => console.log(res));
+        
+            textarea.value = "";
+            this.parentNode.parentNode.style.display = 'none';
+            document.body.classList.remove('stop-scroll-body');
+
+            const commentCount = GLOBAL_CLICKED_POST.querySelector('.number-of-comments');
+            console.log(commentCount);
+            const commentCountValue = parseInt(commentCount.innerText) + 1;
+            console.log(commentCountValue);
+            commentCount.innerText = String(commentCountValue);
+        
+            const isOnPostPage = document.getElementById('ThisIsPostPage');
+            if (isOnPostPage) {
+                location.reload();
+            }
+        }
+    };
+}
+
 for (const post of postsOnPage) {
     const commentButton = post.getElementsByClassName('comment-icon')[0];
-    const slug = post.getElementsByClassName('post-slug')[0].value;
+    // const slug = post.getElementsByClassName('post-slug')[0].value;
+    const username = post.querySelector('#post-username');
+    const usernameHolder = document.getElementById('commenting-to');
+    
 
-    commentButton.addEventListener('click', function() {
+    commentButton.addEventListener('click', function(event) {
+        GLOBAL_CLICKED_POST = event.target.parentNode.parentNode.parentNode;
         const container = document.querySelector('.add-comment-background');
-
         container.style.display = 'block';
         document.body.classList.add('stop-scroll-body');
+        usernameHolder.innerText = username.value;
 
         container.querySelector('#comment-close-button').addEventListener('click', function(){
             container.style.display = 'none';
             document.body.classList.remove('stop-scroll-body');
-        });
-
-        container.querySelector('#send-comment').addEventListener('click', function() {
-            const textarea = container.querySelector('#add-comment-text');
-            const commentText = textarea.value;
-            if (commentText.trim().length !== 0) {
-                createComment(commentText, slug, token).then(res => console.log(res));
-                
-                textarea.value = "";
-                container.style.display = 'none';
-                document.body.classList.remove('stop-scroll-body');
-                const commentCount = document.querySelector('.number-of-comments');
-                console.log(commentCount);
-                const commentCountValue = Number(commentCount.innerText) + 1;
-                console.log(commentCountValue);
-                commentCount.innerText = String(commentCountValue);
-            }
         });
     });
 }

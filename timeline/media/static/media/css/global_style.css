@@ -124,6 +124,12 @@ textarea:focus {
     display: inline;
 }
 
+.comment-box-header p {
+    margin: 2px 0;
+    color: gray;
+    font-size: 14px;
+}
+
 #comment-close-button {
     float: right;
     margin: 0;

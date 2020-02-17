@@ -2,8 +2,8 @@
 {% block content %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'media/css/edit_profile_style.css' %}">
-    <div class="content-container div-debug">
-        <div class="edit-field div-debug">
+    <div class="content-container">
+        <div class="edit-field">
             
             <form method="POST" enctype='multipart/form-data'>
                 {% csrf_token%}

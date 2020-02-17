@@ -18,17 +18,23 @@ def search_detail(request):
     query = request.GET.get('q')
     
     context = {
+        'search_keyword': query,
         'users': []
     }
 
     if len(query) != 0:
         queryset = getUsers(query)
-    
-        for user in queryset:
-            context['users'].append({
-                'username': user.username,
-                'fullName': user.full_name
-            })
+
+        context['users'] = queryset
+        # for user in queryset:
+        #     context['users'].append({
+        #         'username': user.username,
+        #         'fullName': user.full_name
+        #     })
+        if len(queryset) == 0:
+            context['message'] = f"User {query} does not exist!"
+    else:
+        context['message'] = "We couldn't find anything, your search was empty!"
         
     return render(request, 'media/search_detail.html', context)
 
@@ -190,5 +196,5 @@ def getUsers(keyword):
 
 def getComments(post):
     comments = Comment.objects.filter(post=post)
-    print(comments)
-    return comments
+    # print(comments)
+    return comments.order_by('-time')

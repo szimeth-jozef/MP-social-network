@@ -12,16 +12,96 @@
             left: unset;
             right: 15px;
         }
+
+        .comments {
+            margin: 0 auto;
+            margin-top: 20px;
+            margin-bottom: 60px;
+            max-width: 1000px;
+            border: solid 1px gray;
+            border-radius: 5px;
+            padding: 0 5px;
+            background-color: white;
+        }
+
+        .comment-body {
+            border-top: solid 1px gray;
+            border-bottom: solid 1px gray;
+            padding: 5px;
+            margin: -1px -5px;
+        }
+
+        .comment-body a {
+            color: black;
+        }
+
+        .comment-body a:hover {
+            text-decoration: underline;
+        }
+
+        .comment-profile-pic {
+            /* display: inline-block; */
+            width: 70px;
+            height: 70px;
+            border-radius: 35px;
+        }
+
+        .comment-head {
+            display: flex;
+        }
+
+        .flexor {
+            display: flex;
+            align-items: center;
+            position: relative;
+            bottom: 20px;
+            margin-left: 20px;
+        }
+
+        .comment-text {
+            margin: 0;
+            position: relative;
+            left: 85px;
+            bottom: 35px;
+            margin-bottom: -18px;
+            max-width: 88%;
+        }
     </style>
-    <div class="content-container div-debug">
+    <input type="hidden" name="post-page" id="ThisIsPostPage">
+    <div class="content-container">
         {% include "media/post.html" %}
 
         <div class="comments">
+            <h2>Comments</h2>
             {% for comment in commentContent %}
-                <p>{{ comment.text }}</p>
+                <div class="comment-body">
+                    <div class="comment-head">
+                        <img src="{{ comment.user.profile_picture.url }}" alt="user-profile-picture" class="comment-profile-pic">
+                        <div class="flexor">
+                            <a href="{% url 'profile' comment.user.username %}">
+                                <h3>{{ comment.user.full_name }}</h3>
+                            </a>
+                            <p style="margin-left: 5px;">@{{ comment.user.username}}</p>
+                            <p style="margin-left: 30px;">{{ comment.time|date:"j. M Y H:i" }}</p>
+                        </div>
+                    </div>
+                    <p class="comment-text">{{ comment.text }}</p>
+                </div>
             {% endfor %}
         </div>
     </div>
 
+    <div class="add-comment-background">
+        <div class="add-comment-box">
+            <div class="comment-box-header">
+                <h2>Add comment</h2>
+                <h2 id="comment-close-button">+</h2>
+                <p>Commenting on @<span id="commenting-to"></span>'s post</p>
+            </div>
+            <hr/>
+            <textarea name="add-comment-text" id="add-comment-text" placeholder="Write down your comment..." cols="30" rows="10"></textarea>
+            <button id="send-comment">Comment</button>
+        </div>
+    </div>
 
 {% endblock content %}

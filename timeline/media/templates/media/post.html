@@ -2,6 +2,7 @@
 {% load array_access %}
 <div class="post">
     <input type="hidden" name="post-slug" id="post-slug" class="post-slug" value="{{ post.slug }}">
+    <input type="hidden" name="name" id="post-username" value="{{ post.author.username }}">
     <div class="post-header">
         <a href="{% url 'profile' post.author.username %}">
             <img src="{{post.author.profile_picture.url}}" alt="userProfile" class="profile-on-post">
