@@ -73,7 +73,7 @@ class Post {
         if (!this.matchMultipleElements(t, exclude)) {
             if (this.matchMultipleElements(t, this.post) || t === this.parent) {
                 const slug = this.parent.querySelector('#post-slug').value;
-                window.location.href = "http://localhost:8000/site/post/" + slug + "/";
+                window.location.href = "http://litfire.herokuapp.com/site/post/" + slug + "/";
             }
         }
 

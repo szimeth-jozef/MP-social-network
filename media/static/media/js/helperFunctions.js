@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:8000/site/api/';
+const baseURL = 'http://litfire.herokuapp.com/site/api/';
 
 export async function makeLike(state, slug, token) {
     const likeURL = baseURL + 'like/';
@@ -47,7 +47,7 @@ export function addResultsToPopup(box, res) {
         nameHolder.appendChild(name);
 
         nameHolder.addEventListener('click', function() {
-            window.location.href = 'http://localhost:8000/site/' + `${user.username}/`;
+            window.location.href = 'http://litfire.herokuapp.com/site/' + `${user.username}/`;
         });
 
         // nameHolder.classList.add('div-debug');

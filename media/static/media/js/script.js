@@ -63,7 +63,7 @@ const token = document.getElementById('token');
 if (followButton) {
     followButton.addEventListener('click', function() {
 
-        const url = "http://localhost:8000/site/api/makefollow/";
+        const url = "http://litfire.herokuapp.com/site/api/makefollow/";
 
         const data = {
             followed: followButton.value
