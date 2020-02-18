@@ -1,0 +1,103 @@
+.profile-details {
+    position: relative;
+    width: 800px;
+    /* height: 500px; */
+    margin: 10px auto;
+    background-color: white;
+    border: solid gray 1px;
+    border-radius: 4px;
+}
+
+.user-context {
+    /* background-color: white; */
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.visit-card {
+    position: relative;
+    left: 300px;
+    max-width: 330px;
+}
+
+.visit-card h2 {
+    margin-bottom: 0;
+}
+
+.visit-card p {
+    margin: 0;
+}
+
+/* A furcsa jobb oldali rest okozo problema az alabbi szabaj blokkokban van
+pontosabban a left property okozza az ertolzulast mivel hogy kinyomja az ablak oldalat
+megproballom egy float propertyvel orvosolni */
+.user-context h2 {
+    /* position: relative; */
+    /* left: 280px; */
+}
+
+.user-context p {
+    /* position: relative; */
+    /* left: 280px; */
+    /* top: -15px; */
+}
+
+.banner-img {
+    width: 100%;
+    height: 300px;
+}
+
+.profile-img {
+    position: absolute;
+    top: 195px;
+    left: 50px;
+    width: 200px;
+    height: 200px;
+    border: solid white 4px;
+    border-radius: 100px;
+}
+
+.about {
+    margin-left: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.profile-context-button {
+    float: right;
+    margin: 35px;
+    width: 80px;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+#editButton {
+    width: 100px;
+}
+
+.status-info {
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+    padding: 4px;
+    margin-left: 10px;
+}
+
+.status-info a {
+    color: black;
+}
+
+.status-info p {
+    margin: 0;
+}
+
+.status-info a:hover {
+    text-decoration: underline;
+}
+
+.date-joined {
+    margin: 0;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: rgb(97, 97, 97);
+}
