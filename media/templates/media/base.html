@@ -8,7 +8,8 @@
     {% load static %}
     <link rel="icon" type="image/png" href="https://litfire-content.s3.eu-central-1.amazonaws.com/favicon.ico?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEAcaDGV1LWNlbnRyYWwtMSJGMEQCIFWgZTN4Zx5Hj5Wa%2F9XpGBLWFtj9Arz%2Fe9tC1iZofbe4AiBjIL09aXI0LO2CUVviwQiNQehP4xbql8Eo7JepMSVXySqCAgjA%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDc1MTIzMTU2MjM5MCIMQIoG%2FL3AlhNpc7uKKtYB7wAAw27q8KW%2FCcwb%2FmbYumYAY8DN9rA8yPIY6aacnqivxGGfM5%2BS0zqvrJcS3q8Usj7DwypfnaLGhAjDRjRYRfOsHM%2BW0b3UlMJaHYFZ3pGcfCnehXklcFv9XhXj2t2sRGbvwSm%2B%2FUOmue5VVyDo1j%2BP1ohb7rk0A6TrFTflrIKlHUQ%2B%2BRfQbcKn9Ypp8EWIAjiOSkgSnFt%2B5kkaff5u1fwGeWwxXoE7XvTHcT%2B76b%2B%2FXx2UsN0cB23c7agoxOu5CbPxT1V9V5K9H6H0kXs0DLKFnDByGjCDw6ryBTr3AkgG7uGtP7yrf9%2BCxPl5VaaZiiNfVigooxAgL4t4W6GSk8zTBNkDi96JHFciAgBPDjIk6hHA3M66Wj92TE%2FaZNDpBMl5LWlsa42wwPJsMiiQeaWZijcPmqfL2pqPhCn4BCjxXTEb7hJh4xdPGL%2FzEfeevS32BLHOB6m9e8%2FEKJQ6e9KmCumcRVq3j%2F1k5BZfXrd%2BF7EHT%2BKrwHFStXCYKFoP0dPJbvw3a2s8zIO%2FdoUbaMp8JzhraBZteqYtWGkV7KgBq1C9sFxzw%2F3%2FZqbAqAy09Kp5Gpbtlwc51aR%2BMV%2BgkoFqgvzpi1LOm%2BTWai3eA6Cgz7rfmjjn%2FyVXpmNlWZVNu%2BR2%2B%2BmGImjImyspMUVBb%2FVwS5%2FK3M6Wkv0oVeLkPEOeM7gedDzn0GNu5SabEwpOCZteY1V9cxj0WHCFAz%2F3nhjlWTfvxqzX2UkAZ4drT%2Fu9SIvifr1IdSjUrN9DxoRAGc2T04oJwXpzwQwOq4dP4%2FZnlh1cDQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200217T203348Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIA252HD6KLBJ7ZDMHO%2F20200217%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Signature=4cb6f5c81df0d224d303afa54c5fefc2fa46d1f041c99f504514625e67489758"/>
     <link rel="stylesheet" href="{% static 'media/css/global_style.css' %}">
-    <link rel="stylesheet" href="{% static 'media/css/headbar_style.css' %}">
+    <link rel="stylesheet" media="screen and (min-width: 1200px)" href="{% static 'media/css/wide_headbar_style.css' %}">
+    <link rel="stylesheet" media="screen and (max-width: 1200px)" href="{% static 'media/css/narrow_headbar_style.css' %}">
     <link rel="stylesheet" href="{% static 'media/css/post_style.css' %}">
 </head>
 <body>
@@ -16,14 +17,14 @@
         <div class="branding">
             <h1><a href="{% url 'home' %}">LitFire</a></h1>
         </div>
-        <div class="usertools">
-            <form action="{% url 'search_detail' %}" method="GET">
-                <div class="searchbar">
-                    <input name="q" type="search" placeholder="Search" id="search-bar" autocomplete="off">
-                    <button type="submit"><img src="{% static 'media/images/search.png' %}" width="12px" height="12px"></button>
-                </div>
-            </form>
+        <form action="{% url 'search_detail' %}" method="GET" class="search-form">
+            <div class="searchbar">
+                <input name="q" type="search" placeholder="Search" id="search-bar" autocomplete="off">
+                <button type="submit"><img src="{% static 'media/images/search.png' %}" width="12px" height="12px"></button>
+            </div>
             <div class="popup-results" id="popup-box"></div>
+        </form>
+        <div class="usertools">
             <div class="links">
                 <a href="{% url 'profile' request.user.username %}" id="profile-link" class="navbar-link">
                     <img src="{{ request.user.profile_picture.url }}" id="home-profile-picture" name="home-profile-picture">

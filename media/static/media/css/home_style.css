@@ -1,5 +1,6 @@
 .create-status-field {
-    width: 800px;
+    max-width: 800px;
+    /* width: 800px; */
     margin: 0 auto;
     margin-bottom: 50px;
     padding: 25px 5px;
@@ -64,7 +65,6 @@
 .upld-image-container {
     position: relative;
     max-width: 500px;
-    max-height: 500px;
     margin: 0 auto;
     margin-top: 20px;
 }

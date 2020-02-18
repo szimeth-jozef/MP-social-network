@@ -31,13 +31,14 @@ textarea:focus {
 
 .content-container {
     width: 75%;
-    min-width: 800px;
+    /* min-width: 800px; */
     margin: 0 auto;
     margin-top: 40px;
 }
 
 .posts-container {
-    width: 800px;
+    /* width: 800px; */
+    max-width: 800px;
     margin: 10px auto;
 }
 
