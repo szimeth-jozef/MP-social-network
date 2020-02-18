@@ -18,7 +18,10 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from account.views import registration_view
+
 urlpatterns = [
+    path('', registration_view, name="registration"),
     path('site/', include('media.urls')),
     path('account/', include('account.urls')),
     path('admin/', admin.site.urls),
