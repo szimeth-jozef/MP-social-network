@@ -122,9 +122,15 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
     if not old_profile == new_profile:
         # if os.path.isfile(old_profile.path):
         #     os.remove(old_profile.path)
-        old_profile.delete(save=False)
+        print(old_profile)
+        print(old_profile.url)
+        if not 'default_images/default_profile.png' == old_profile:
+            old_profile.delete(save=False)
 
     if not old_banner == new_banner:
         # if os.path.isfile(old_banner.path):
         #     os.remove(old_banner.path)
-        old_banner.delete(save=False)
+        print(old_banner)
+        print(old_banner.url)
+        if not 'default_images/default_banner.png' == old_banner:
+            old_banner.delete(save=False)
