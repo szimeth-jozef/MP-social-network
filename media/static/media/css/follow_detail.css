@@ -57,6 +57,18 @@
     margin-left: 10px;
 }
 
+.user-field:hover {
+    background-color: rgba(202, 202, 202, 0.459);
+}
+
+.user-field a {
+    color: black;
+}
+
+.user-field a:hover {
+    text-decoration: underline;
+}
+
 .user-field p {
     margin-left: 5px;
 }

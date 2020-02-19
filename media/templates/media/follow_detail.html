@@ -9,13 +9,15 @@
                 <div class="bar-button"><a href="{% url 'follow-detail' username=username follow='followers' %}">Followers</a></div> 
                 <div class="bar-button active" id="following"><a href="{% url 'follow-detail' username=username follow='following' %}">Following</a></div>
             </div>
-            <div class="users-container div-debug">
+            <div class="users-container">
                 {% for user in users %}
                     <div class="user-field">
-                        <div class="user-info">
-                            <img src="{{ user.profile_picture.url }}" alt="user-profile-picture">
-                            <p>{{ user.full_name }}</p>
-                        </div>
+                        <a href="{% url 'profile' user.username %}">
+                            <div class="user-info">
+                                <img src="{{ user.profile_picture.url }}" alt="user-profile-picture">
+                                <p>{{ user.full_name }}</p>
+                            </div>
+                        </a>
                         <div class="follow-button">
                             <!-- <button id="followButton" class="profile-context-button" value="{{ user.username }}">
                                 {% if isFollowing %}
@@ -36,10 +38,12 @@
             <div class="users-container">
                 {% for user in users %}
                     <div class="user-field">
-                        <div class="user-info">
-                            <img src="{{ user.profile_picture.url }}" alt="user-profile-picture">
-                            <p>{{ user.full_name }}</p>
-                        </div>
+                        <a href="{% url 'profile' user.username %}">
+                            <div class="user-info">
+                                <img src="{{ user.profile_picture.url }}" alt="user-profile-picture">
+                                <p>{{ user.full_name }}</p>
+                            </div>
+                        </a>
                         <div class="follow-button">
                             <!-- <button id="followButton" class="profile-context-button" value="{{ username }}">
                                 {% if isFollowing %}
